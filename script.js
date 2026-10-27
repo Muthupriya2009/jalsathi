@@ -1,128 +1,60 @@
-
-const translations = {
-  en: {
-    welcome: "Welcome to JalSathi!",
-    subtitle: "Smarconstt water management for rice farmers 🌾",
-    save: "Save Field Details",
-    saved: "Your field details have been saved!"
-  },
-  ta: {
-    welcome: "ஜல்சாதிக்கு வரவேற்கிறோம்!",
-    subtitle: "நெல் விவசாயத்திற்கான நீர் மேலாண்மை 🌾",
-    save: "வயல் விவரங்களைச் சேமிக்கவும்",
-    saved: "உங்கள் வயல் விவரங்கள் சேமிக்கப்பட்டன!"
-  }
-};
+const languageButton = document.getElementById("language-toggle");
+const saveButton = document.getElementById("save-field");
+const fieldName = document.getElementById("field-name");
+const growthStage = document.getElementById("growth-stage");
+const statusMessage = document.getElementById("status");
 
 let currentLanguage = "en";
 
-function changeLanguage(language) {
-  currentLanguage = language;
+languageButton.addEventListener("click", function () {
+  currentLanguage = currentLanguage === "en" ? "ta" : "en";
 
-   welcome = document.getElementById("welcome");
- const  subtitle = document.getElementById("subtitle");
-  const saveButton = document.getElementById("saveButton");
+  // Update the language of the page.
+  document.documentElement.lang =
+    currentLanguage === "en" ? "en" : "ta";
 
-  if (welcome) {
-    welcome.textContent = translations[language].welcome;
-  }
+  // Translate every element that has translation text.
+  document.querySelectorAll("[data-en]").forEach(function (element) {
+    element.textContent = element.dataset[currentLanguage];
+  });
 
-  if (subtitle) {
-    subtitle.textContent = translations[language].subtitle;
-  }
+  // Translate the field-name placeholder.
+  fieldName.placeholder =
+    fieldName.dataset["placeholder" + (currentLanguage === "en" ? "En" : "Ta")];
 
-  if (saveButton) {
-saveButton.textContent = translations[language].save;
-  }
-}
+  // Show the other language as the next button option.
+  languageButton.textContent =
+    currentLanguage === "en" ? "தமிழ்" : "English";
 
-  const farmerName = document.getElementById("farmerName");
-  const fieldStage = document.getElementById("growthStage");
+  // Clear old status messages so they don't show in the wrong language.
+  statusMessage.textContent = "";
+});
 
-   details = {
-    name: farmerName ? farmerName.value.trim() : "",
-    stage: fieldStage ? fieldStage.value : ""
+saveButton.addEventListener("click", function () {
+  const record = {
+    name: fieldName.value.trim(),
+    growthStage: growthStage.value
   };
 
-  if (!details.name) {
-    alert("Please enter the farmer name!");
-    return;
-  }
-    
- localStorage.setItem("jalSathiField", JSON.stringify(details));
-
-  alert(translations[currentLanguage].saved);
-}
-
-console.log("JalSathi JavaScript loaded successfully! 🌾");
-const saveRainfallButton =
-  document.getElementById("saveRainfall");
-
-saveRainfallButton.addEventListener("click", function () {
-  const rainfall =
-    document.getElementById("rainfall").value;
-const
-  const message =
-    document.getElementById("rainfallMessage");
-
-  if (rainfall === "") {
-    message.textContent =
-      "Please choose a rainfall observation.";
+  if (!record.growthStage) {
+    statusMessage.textContent =
+      currentLanguage === "en"
+        ? "Please choose the rice growth stage first."
+        : "முதலில் நெல் வளர்ச்சி நிலையைத் தேர்ந்தெடுக்கவும்.";
     return;
   }
 
-  localStorage.setItem("jalSathiRainfall", rainfall);
+  try {
+    localStorage.setItem("jalsathi-field", JSON.stringify(record));
 
-  message.textContent =
-    "Rainfall observation saved successfully!";
-});
-
-window.addEventListener("DOMContentLoaded", function () {
-  // Restore the saved field details.
-  const savedField = localStorage.getItem("jalSathi-field");
-
-  if (savedField) {
-    try {
-      const details = JSON.parse(savedField);
-
-      const nameInput = document.getElementById("farmerName");
-      const stageInput = document.getElementById("fieldStage");
-      const fieldNameInput = document.getElementById("field-name");
-
-      if (nameInput) nameInput.value = details.name || "";
-      if (stageInput) stageInput.value = details.stage || "";
-      if (fieldNameInput) fieldNameInput.value = details.fieldName || "";
-    } catch (error) {
-      console.error("Could not restore field details:", error);
-    }
-  }
-
-  // Restore the saved rainfall observation.
-  const savedRainfall = localStorage.getItem("jalSathiRainfall");
-  const rainfallInput = document.getElementById("rainfall");
-
-  if (savedRainfall && rainfallInput) {
-    rainfallInput.value = savedRainfall;
+    statusMessage.textContent =
+      currentLanguage === "en"
+        ? "Field details saved on this device!"
+        : "வயல் விவரங்கள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டன!";
+  } catch (error) {
+    statusMessage.textContent =
+      currentLanguage === "en"
+        ? "Could not save. Please check your browser settings."
+        : "சேமிக்க முடியவில்லை. உலாவி அமைப்புகளைச் சரிபார்க்கவும்.";
   }
 });
-
-window.addEventListener("DOMContentLoaded", function () {
-  const savedField = localStorage.getItem("jalSathiField");
-
-  if (savedField) {
-    const details = JSON.parse(savedField);
-functionsaveFieldDetails
-    const farmerName = document.getElementById("farmerName");
-    const fieldStage = document.getElementById("growthStage");
-
-    if (farmerName) {
-      farmerName. () {
-value = details.name || "";
-    }
-
-    if (fieldStage) {
-      fieldStage.value = details.stage || "";
-    }
-  }
-});
-
