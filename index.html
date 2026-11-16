@@ -3,191 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#176b4d">
-  <title>JalSathi - Smart Water Planning</title>
+  <meta name="theme-color" content="#166534">
+  <title>JalSathi - Smart Water Planning for Farmers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="JalSathi home">
-      <span class="logo">J</span>
-      <span>JalSathi</span>
-    </a>
-
-    <button id="language-toggle" type="button"
-      aria-label="Switch language">
-      தமிழ்
-    </button>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <p class="tag" data-en="SMART FARMING, LESS WATER WASTE"
-        data-ta="சிறந்த விவசாயம், குறைந்த நீர் வீணாக்கம்">
-        SMART FARMING, LESS WATER WASTE
-      </p>
-
-      <h1 data-en="Every drop matters."
-        data-ta="ஒவ்வொரு துளியும் முக்கியம்.">
-        Every drop matters.
-      </h1>
-
-      <p class="intro"
-        data-en="Plan irrigation thoughtfully for your rice field, even with a weak internet connection."
-        data-ta="இணைய இணைப்பு குறைவாக இருந்தாலும், உங்கள் நெல் வயலுக்கு நீர்ப்பாசனத்தைத் திட்டமிடுங்கள்.">
-        Plan irrigation thoughtfully for your rice field,
-        even with a weak internet connection.
-      </p>
-
-      <div class="hero-actions">
-        <a class="primary-button" href="#field-form"
-          data-en="Plan my field"
-          data-ta="என் வயலைத் திட்டமிடு">
-          Plan my field
+  <div class="site-wrapper">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#" aria-label="JalSathi home">
+          <div class="logo-box">
+            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">JalSathi</span>
+            <span class="brand-sub">AgriWater Planner</span>
+          </div>
         </a>
-        <span class="offline-label"
-          data-en="● Designed for low connectivity"
-          data-ta="● குறைந்த இணைய இணைப்பிற்காக வடிவமைக்கப்பட்டது">
-          ● Designed for low connectivity
-        </span>
-      </div>
-    </section>
 
-    <section class="info-card" id="field-form">
-      <h2 data-en="Your rice field"
-        data-ta="உங்கள் நெல் வயல்">
-        Your rice field
-      </h2>
-
-      <p class="muted"
-        data-en="Let's begin with a few details."
-        data-ta="சில விவரங்களுடன் தொடங்குவோம்.">
-        Let's begin with a few details.
-      </p>
-
-      <label for="field-name"
-        data-en="Field name (optional)"
-        data-ta="வயலின் பெயர் (விருப்பம்)">
-        Field name (optional)
-      </label>
-
-      <input id="field-name" type="text"
-        placeholder="e.g. North field"
-        data-placeholder-en="e.g. North field"
-        data-placeholder-ta="எ.கா. வடக்கு வயல்">
-
-      <label for="growth-stage"
-        data-en="Rice growth stage"
-        data-ta="நெல் வளர்ச்சி நிலை">
-        Rice growth stage
-      </label>
-
-      <select id="growth-stage">
-        <option value=""
-          data-en="Choose a stage"
-          data-ta="வளர்ச்சி நிலையைத் தேர்ந்தெடுக்கவும்">
-          Choose a stage
-        </option>
-        <option value="establishment"
-          data-en="Establishment / early growth"
-          data-ta="ஆரம்ப வளர்ச்சி">
-          Establishment / early growth
-        </option>
-        <option value="tillering"
-          data-en="Tillering"
-          data-ta="தூர்கள் உருவாகும் நிலை">
-          Tillering
-        </option>
-        <option value="reproductive"
-          data-en="Reproductive stage"
-          data-ta="இனப்பெருக்க நிலை">
-          Reproductive stage
-        </option>
-        <option value="ripening"
-          data-en="Ripening / maturity"
-          data-ta="மணிகள் முதிரும் நிலை">
-          Ripening / maturity
-        </option>
-        <option value="unknown"
-          data-en="Not sure"
-          data-ta="உறுதியாகத் தெரியவில்லை">
-          Not sure
-        </option>
-      </select>
-
-      <p class="note"
-        data-en="These details help organize your records. They do not determine an exact irrigation prescription."
-        data-ta="இந்த விவரங்கள் உங்கள் பதிவுகளை ஒழுங்குபடுத்த உதவும். இவை துல்லியமான நீர்ப்பாசன அளவைத் தீர்மானிக்காது.">
-        These details help organize your records. They do not
-        determine an exact irrigation prescription.
-      </p>
-
-      <button id="save-field" class="primary-button full-width"
-        type="button"
-        data-en="Save field details"
-        data-ta="வயல் விவரங்களைச் சேமி">
-        Save field details
-      </button>
-
-      <p id="status" role="status" aria-live="polite"></p>
-    </section>
-
-    <section class="info-card">
-      <h2 data-en="How JalSathi helps"
-        data-ta="ஜல்சாதி எவ்வாறு உதவுகிறது">
-        How JalSathi helps
-      </h2>
-
-      <div class="feature">
-        <span class="feature-icon">💧</span>
-        <div>
-          <h3 data-en="Plan thoughtfully"
-            data-ta="கவனமாகத் திட்டமிடுங்கள்">
-            Plan thoughtfully
-          </h3>
-          <p data-en="Consider field conditions and crop stage."
-            data-ta="வயல் நிலை மற்றும் பயிர் வளர்ச்சி நிலையைக் கவனியுங்கள்.">
-            Consider field conditions and crop stage.
-          </p>
+        <div class="topbar-actions">
+          <span class="badge-status-pill desktop-only">
+            <span class="status-dot"></span>
+            <span data-en="Offline Ready" data-ta="ஆஃப்லைன் தயார்">Offline Ready</span>
+          </span>
+          <button id="language-toggle" type="button" aria-label="Switch language">
+            <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="language-label">தமிழ்</span>
+          </button>
         </div>
       </div>
+    </header>
 
-      <div class="feature">
-        <span class="feature-icon">🌦️</span>
-        <div>
-          <h3 data-en="Consider rainfall"
-            data-ta="மழையைக் கருத்தில் கொள்ளுங்கள்">
-            Consider rainfall
-          </h3>
-          <p data-en="Record recent rain before planning irrigation."
-            data-ta="நீர்ப்பாசனத்தைத் திட்டமிடுவதற்கு முன் சமீபத்திய மழையைப் பதிவு செய்யுங்கள்.">
-            Record recent rain before planning irrigation.
-          </p>
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span class="tag" data-en="SMART FARMING, LESS WATER WASTE"
+            data-ta="சிறந்த விவசாயம், குறைந்த நீர் வீணாக்கம்">
+            SMART FARMING, LESS WATER WASTE
+          </span>
         </div>
-      </div>
 
-      <div class="feature">
-        <span class="feature-icon">📒</span>
-        <div>
-          <h3 data-en="Keep field records"
-            data-ta="வயல் பதிவுகளைப் பராமரியுங்கள்">
-            Keep field records
-          </h3>
-          <p data-en="Build a history of your field observations."
-            data-ta="உங்கள் வயல் கண்காணிப்புகளின் வரலாற்றைப் பதிவு செய்யுங்கள்.">
-            Build a history of your field observations.
-          </p>
+        <h1 data-en="Every drop matters."
+          data-ta="ஒவ்வொரு துளியும் முக்கியம்.">
+          Every drop matters.
+        </h1>
+
+        <p class="intro"
+          data-en="Plan irrigation thoughtfully for your rice field, even with a weak internet connection."
+          data-ta="இணைய இணைப்பு குறைவாக இருந்தாலும், உங்கள் நெல் வயலுக்கு நீர்ப்பாசனத்தைத் திட்டமிடுங்கள்.">
+          Plan irrigation thoughtfully for your rice field,
+          even with a weak internet connection.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-button hero-cta" href="#field-form"
+            data-en="Plan my field"
+            data-ta="என் வயலைத் திட்டமிடு">
+            Plan my field
+            <svg class="button-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <div class="offline-label-container">
+            <span class="status-indicator-dot"></span>
+            <span class="offline-label"
+              data-en="Designed for low connectivity"
+              data-ta="குறைந்த இணைய இணைப்பிற்காக வடிவமைக்கப்பட்டது">
+              Designed for low connectivity
+            </span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer>
-      <p data-en="Built for farmers. Designed to use water wisely."
-        data-ta="விவசாயிகளுக்காக. நீரைச் சிக்கனமாகப் பயன்படுத்துவதற்காக.">
-        Built for farmers. Designed to use water wisely.
-      </p>
-    </footer>
-  </main>
+      <!-- Main Interactive Form Card -->
+      <section class="info-card form-section" id="field-form">
+        <div class="card-header">
+          <div class="card-icon-title">
+            <div class="card-icon-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h2 data-en="Your rice field"
+                data-ta="உங்கள் நெல் வயல்">
+                Your rice field
+              </h2>
+              <p class="muted card-desc"
+                data-en="Let's begin with a few details."
+                data-ta="சில விவரங்களுடன் தொடங்குவோம்.">
+                Let's begin with a few details.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <form onsubmit="return false;" class="form-body">
+          <div class="form-group">
+            <label for="field-name"
+              data-en="Field name (optional)"
+              data-ta="வயலின் பெயர் (விருப்பம்)">
+              Field name (optional)
+            </label>
+            <div class="input-wrapper">
+              <input id="field-name" type="text"
+                placeholder="e.g. North field"
+                data-placeholder-en="e.g. North field"
+                data-placeholder-ta="எ.கா. வடக்கு வயல்"
+                autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="growth-stage"
+              data-en="Rice growth stage"
+              data-ta="நெல் வளர்ச்சி நிலை">
+              Rice growth stage
+            </label>
+            <div class="select-wrapper">
+              <select id="growth-stage">
+                <option value=""
+                  data-en="Choose a stage"
+                  data-ta="வளர்ச்சி நிலையைத் தேர்ந்தெடுக்கவும்">
+                  Choose a stage
+                </option>
+                <option value="establishment"
+                  data-en="Establishment / early growth"
+                  data-ta="ஆரம்ப வளர்ச்சி">
+                  Establishment / early growth
+                </option>
+                <option value="tillering"
+                  data-en="Tillering"
+                  data-ta="தூர்கள் உருவாகும் நிலை">
+                  Tillering
+                </option>
+                <option value="reproductive"
+                  data-en="Reproductive stage"
+                  data-ta="இனப்பெருக்க நிலை">
+                  Reproductive stage
+                </option>
+                <option value="ripening"
+                  data-en="Ripening / maturity"
+                  data-ta="மணிகள் முதிரும் நிலை">
+                  Ripening / maturity
+                </option>
+                <option value="unknown"
+                  data-en="Not sure"
+                  data-ta="உறுதியாகத் தெரியவில்லை">
+                  Not sure
+                </option>
+              </select>
+              <svg class="select-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <p class="note"
+              data-en="These details help organize your records. They do not determine an exact irrigation prescription."
+              data-ta="இந்த விவரங்கள் உங்கள் பதிவுகளை ஒழுங்குபடுத்த உதவும். இவை துல்லியமான நீர்ப்பாசன அளவைத் தீர்மானிக்காது.">
+              These details help organize your records. They do not
+              determine an exact irrigation prescription.
+            </p>
+          </div>
+
+          <button id="save-field" class="primary-button full-width"
+            type="button"
+            data-en="Save field details"
+            data-ta="வயல் விவரங்களைச் சேமி">
+            Save field details
+          </button>
+
+          <p id="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- Value Propositions Section -->
+      <section class="info-card features-card">
+        <h2 class="features-title"
+          data-en="How JalSathi helps"
+          data-ta="ஜல்சாதி எவ்வாறு உதவுகிறது">
+          How JalSathi helps
+        </h2>
+
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon water-theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 data-en="Plan thoughtfully"
+                data-ta="கவனமாகத் திட்டமிடுங்கள்">
+                Plan thoughtfully
+              </h3>
+              <p data-en="Consider field conditions and crop stage."
+                data-ta="வயல் நிலை மற்றும் பயிர் வளர்ச்சி நிலையைக் கவனியுங்கள்.">
+                Consider field conditions and crop stage.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon weather-theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path>
+                <path d="M8 19l2 3"></path>
+                <path d="M14 19l2 3"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 data-en="Consider rainfall"
+                data-ta="மழையைக் கருத்தில் கொள்ளுங்கள்">
+                Consider rainfall
+              </h3>
+              <p data-en="Record recent rain before planning irrigation."
+                data-ta="நீர்ப்பாசனத்தைத் திட்டமிடுவதற்கு முன் சமீபத்திய மழையைப் பதிவு செய்யுங்கள்.">
+                Record recent rain before planning irrigation.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <div class="feature-icon records-theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <h3 data-en="Keep field records"
+                data-ta="வயல் பதிவுகளைப் பராமரியுங்கள்">
+                Keep field records
+              </h3>
+              <p data-en="Build a history of your field observations."
+                data-ta="உங்கள் வயல் கண்காணிப்புகளின் வரலாற்றைப் பதிவு செய்யுங்கள்.">
+                Build a history of your field observations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p data-en="Built for farmers. Designed to use water wisely."
+          data-ta="விவசாயிகளுக்காக. நீரைச் சிக்கனமாகப் பயன்படுத்துவதற்காக.">
+          Built for farmers. Designed to use water wisely.
+        </p>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>

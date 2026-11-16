@@ -1,4 +1,5 @@
 const languageButton = document.getElementById("language-toggle");
+const languageLabel = document.getElementById("language-label");
 const saveButton = document.getElementById("save-field");
 const fieldName = document.getElementById("field-name");
 const growthStage = document.getElementById("growth-stage");
@@ -6,28 +7,45 @@ const statusMessage = document.getElementById("status");
 
 let currentLanguage = "en";
 
+// Restore stored field details if available on load
+(function initStoredData() {
+  try {
+    const raw = localStorage.getItem("jalsathi-field");
+    if (raw) {
+      const data = JSON.parse(raw);
+      if (data.name) fieldName.value = data.name;
+      if (data.growthStage) growthStage.value = data.growthStage;
+    }
+  } catch (e) {
+    // Ignore storage read errors
+  }
+})();
+
 languageButton.addEventListener("click", function () {
   currentLanguage = currentLanguage === "en" ? "ta" : "en";
 
-  // Update the language of the page.
-  document.documentElement.lang =
-    currentLanguage === "en" ? "en" : "ta";
+  // Update the language of the page
+  document.documentElement.lang = currentLanguage;
 
-  // Translate every element that has translation text.
+  // Translate every element that has translation text
   document.querySelectorAll("[data-en]").forEach(function (element) {
     element.textContent = element.dataset[currentLanguage];
   });
 
-  // Translate the field-name placeholder.
+  // Translate the field-name placeholder
   fieldName.placeholder =
     fieldName.dataset["placeholder" + (currentLanguage === "en" ? "En" : "Ta")];
 
-  // Show the other language as the next button option.
-  languageButton.textContent =
-    currentLanguage === "en" ? "தமிழ்" : "English";
+  // Show the other language as the button label
+  if (languageLabel) {
+    languageLabel.textContent = currentLanguage === "en" ? "தமிழ்" : "English";
+  } else {
+    languageButton.textContent = currentLanguage === "en" ? "தமிழ்" : "English";
+  }
 
-  // Clear old status messages so they don't show in the wrong language.
+  // Clear status messages on language switch
   statusMessage.textContent = "";
+  statusMessage.className = "";
 });
 
 saveButton.addEventListener("click", function () {
@@ -37,21 +55,25 @@ saveButton.addEventListener("click", function () {
   };
 
   if (!record.growthStage) {
+    statusMessage.className = "error";
     statusMessage.textContent =
       currentLanguage === "en"
         ? "Please choose the rice growth stage first."
         : "முதலில் நெல் வளர்ச்சி நிலையைத் தேர்ந்தெடுக்கவும்.";
+    growthStage.focus();
     return;
   }
 
   try {
     localStorage.setItem("jalsathi-field", JSON.stringify(record));
 
+    statusMessage.className = "success";
     statusMessage.textContent =
       currentLanguage === "en"
-        ? "Field details saved on this device!"
-        : "வயல் விவரங்கள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டன!";
+        ? "✓ Field details saved on this device!"
+        : "✓ வயல் விவரங்கள் இந்தச் சாதனத்தில் சேமிக்கப்பட்டன!";
   } catch (error) {
+    statusMessage.className = "error";
     statusMessage.textContent =
       currentLanguage === "en"
         ? "Could not save. Please check your browser settings."
